@@ -42,8 +42,8 @@ implementation
 
   destructor TSchool.Destroy;
     begin
-      self.FStudentList.Free;
-      self.FRoster.Free;     //  When un-commented, makes tests crash    =>  Does leaving it commented creating a memory leak???
+      FStudentList.Free;
+      // FRoster.Free;    // Is commented because test already released it. Either refactor test or refactor logic here
       inherited;
     end;
 
