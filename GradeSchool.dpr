@@ -3,6 +3,9 @@ program BracketPush;
 {$APPTYPE CONSOLE}
 {$ENDIF}{$STRONGLINKTYPES ON}
 uses
+  {$IFDEF DEBUG}
+  FastMM5 in 'FastMM5.pas',
+  {$ENDIF}
   System.SysUtils,
   {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX,
@@ -19,6 +22,9 @@ var
   logger : ITestLogger;
   nunitLogger : ITestLogger;
 begin
+
+  System.ReportMemoryLeaksOnShutdown := True;
+
 {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX.RunRegisteredTests;
   exit;

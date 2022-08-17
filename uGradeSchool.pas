@@ -43,8 +43,8 @@ implementation
       if Assigned(FStudentList) then
         begin
           FStudentList.Clear;
-          FreeAndNil(FStudentList);
         end;
+        FreeAndNil(FStudentList);
       inherited;
     end;
 
