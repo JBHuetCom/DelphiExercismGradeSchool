@@ -25,7 +25,7 @@ interface
       FStudentList : TDictionary<integer, TRoster>;
     end;
 
-    function NewSchool : TSchool;
+    function NewSchool : ISchool;
 
 implementation
 
@@ -42,9 +42,14 @@ implementation
     begin
       if Assigned(FStudentList) then
         begin
-          FStudentList.Clear;
+          for var ListKey in FStudentList.Keys do
+            begin
+              FStudentList.Items[ListKey].Free;
+              FStudentList.Remove(ListKey);
+            end;
+          FStudentList.Clear;   // !!! WARNING !!! Clear method do not Free items
         end;
-        FreeAndNil(FStudentList);
+      FStudentList.Free;
       inherited;
     end;
 
@@ -86,7 +91,7 @@ implementation
         end;
     end;
 
-  function NewSchool : TSchool;
+  function NewSchool : ISchool;
     begin
       Result := TSchool.Create;
     end;

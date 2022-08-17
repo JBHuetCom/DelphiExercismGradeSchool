@@ -23,12 +23,15 @@ var
   nunitLogger : ITestLogger;
 begin
 
+  {$IFDEF DEBUG}
   System.ReportMemoryLeaksOnShutdown := True;
+  {$ENDIF}
 
-{$IFDEF TESTINSIGHT}
+  {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX.RunRegisteredTests;
   exit;
-{$ENDIF}
+  {$ENDIF}
+
   try
     //Check command line options, will exit if invalid
     TDUnitX.CheckCommandLine;
