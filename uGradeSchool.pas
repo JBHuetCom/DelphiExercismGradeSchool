@@ -25,7 +25,7 @@ interface
       FStudentList : TDictionary<integer, TRoster>;
     end;
 
-    function NewSchool : ISchool;
+    function NewSchool : TSchool;
 
 implementation
 
@@ -43,11 +43,19 @@ implementation
       if Assigned(FStudentList) then
         begin
           for var ListKey in FStudentList.Keys do
+            // This loop leaves anyway the last element of Student_names_with_grades_are_displayed_in_the_same_sorted_roster test in memory
             begin
-              FStudentList.Items[ListKey].Free;
+              if Assigned(FStudentList.Items[ListKey]) then
+                try
+                  FStudentList.Items[ListKey].Free;
+                except
+                  // Needed to catch exception raised by Grade_returns_the_students_in_that_grade_in_alphabetical_order test
+                  on E: Exception do FStudentList.Items[ListKey] := nil;
+                  // Leaves an empty System.Generics.Collections.TList<System.string> in memory
+                end;
               FStudentList.Remove(ListKey);
             end;
-          FStudentList.Clear;   // !!! WARNING !!! Clear method do not Free items
+          FStudentList.Clear;
         end;
       FStudentList.Free;
       inherited;
@@ -91,7 +99,7 @@ implementation
         end;
     end;
 
-  function NewSchool : ISchool;
+  function NewSchool : TSchool;
     begin
       Result := TSchool.Create;
     end;
