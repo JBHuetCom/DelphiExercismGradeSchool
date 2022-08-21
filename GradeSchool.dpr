@@ -1,3 +1,4 @@
+// JCL_DEBUG_EXPERT_GENERATEJDBG ON
 program BracketPush;
 {$IFNDEF TESTINSIGHT}
 {$APPTYPE CONSOLE}
@@ -5,7 +6,12 @@ program BracketPush;
 uses
   {$IFDEF DEBUG}
   FastMM5 in 'FastMM5.pas',
-  {$ENDIF}
+  madExcept,
+  madLinkDisAsm,
+  madListHardware,
+  madListProcesses,
+  madListModules,
+  {$ENDIF }
   System.SysUtils,
   {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX,

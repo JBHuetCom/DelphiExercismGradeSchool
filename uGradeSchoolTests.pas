@@ -47,8 +47,6 @@ type
     [Test]
 //    [Ignore]
     procedure Grade_returns_the_students_in_that_grade_in_alphabetical_order;
-    // This test creates a memory leak
-    // An empty System.Generics.Collections.TList<System.string> stays in memory
 
     [Test]
 //    [Ignore]
