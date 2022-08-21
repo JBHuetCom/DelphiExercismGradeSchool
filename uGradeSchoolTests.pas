@@ -126,7 +126,7 @@ begin
   school.Add('Barb', 1);
   school.Add('Zoe', 2);
   school.Add('Alex', 2);
-  school.Add('Jim', 3);
+  school.Add('Jim', 3);  // Creates a memory leak!?! WTF...???
   school.Add('Charlie', 1);
   actual := school.Roster;
   expected.AddRange(['Anna', 'Barb', 'Charlie', 'Alex', 'Peter', 'Zoe', 'Jim']);

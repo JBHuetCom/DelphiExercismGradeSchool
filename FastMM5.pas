@@ -155,8 +155,7 @@ uses
 {$LongStrings On}
 {$Align 8}
 
-{$define FastMM_ClearLogFileOnStartup}
-{$define FastMM_EnableMemoryLeakReporting}
+{$Include FastMM5Options.inc}
 
 {Translate legacy v4 defines to their current names.}
 {$ifdef FullDebugMode} {$define FastMM_FullDebugMode} {$endif}

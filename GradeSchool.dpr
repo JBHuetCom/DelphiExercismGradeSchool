@@ -6,11 +6,6 @@ program BracketPush;
 uses
   {$IFDEF DEBUG}
   FastMM5 in 'FastMM5.pas',
-  madExcept,
-  madLinkDisAsm,
-  madListHardware,
-  madListProcesses,
-  madListModules,
   {$ENDIF }
   System.SysUtils,
   {$IFDEF TESTINSIGHT}

@@ -81,18 +81,17 @@ implementation
 
   function TSchool.Roster : TRoster;
     var
-      i : integer;
-      VKeyList : TArray<integer>;
+      StudentListKeys : TArray<integer>;
     begin
       Result := TRoster.Create;
       if 0 < FStudentList.Count then
         begin
-          SetLength(VKeyList, FStudentList.Count);
-          VKeyList := FStudentList.Keys.ToArray;
-          TArray.Sort<integer>(VKeyList);
-          for i := 0 to (Length(VKeyList) - 1) do
-            Result.AddRange(FStudentList.Items[VKeyList[i]]);
-          SetLength(VKeyList,0);
+          SetLength(StudentListKeys, FStudentList.Count);
+          StudentListKeys := FStudentList.Keys.ToArray;
+          TArray.Sort<integer>(StudentListKeys);
+          for var i := 0 to (Length(StudentListKeys) - 1) do
+            Result.AddRange(FStudentList.Items[StudentListKeys[i]]);
+          SetLength(StudentListKeys,0);
         end;
     end;
 
