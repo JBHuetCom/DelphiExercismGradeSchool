@@ -39,18 +39,22 @@ implementation
     end;
 
   destructor TSchool.Destroy;
+    var
+      StudentListKeys : TArray<Integer>;
     begin
       if Assigned(FStudentList) then
         begin
-          for var ListKey in FStudentList.Keys do
-            // This loop leaves anyway the last element of Student_names_with_grades_are_displayed_in_the_same_sorted_roster test in memory
+          SetLength(StudentListKeys, FStudentList.Keys.Count);
+          StudentListKeys := FStudentList.Keys.ToArray;
+          for var i := 0 to Length(StudentListKeys) - 1 do
             begin
-              if Assigned(FStudentList.Items[ListKey]) then
-                  FStudentList.Items[ListKey].Free;
-              FStudentList.Remove(ListKey);
+              if Assigned(FStudentList.Items[StudentListKeys[i]]) then
+                  FStudentList.Items[StudentListKeys[i]].Free;
+              FStudentList.Remove(StudentListKeys[i]);
             end;
           FStudentList.Clear;
         end;
+      SetLength(StudentListKeys, 0);
       FStudentList.Free;
       inherited;
     end;
@@ -64,8 +68,8 @@ implementation
         end
       else
         begin
-          FStudentList.Add(AGrade, TRoster.Create);
-          FStudentList.Items[AGrade].Add(AName);
+          if FStudentList.TryAdd(AGrade, TRoster.Create) then
+            FStudentList.Items[AGrade].Add(AName);
         end;
     end;
 

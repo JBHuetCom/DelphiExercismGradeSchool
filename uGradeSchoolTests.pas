@@ -41,8 +41,6 @@ type
     [Test]
 //    [Ignore]
     procedure Student_names_with_grades_are_displayed_in_the_same_sorted_roster;
-    // This test creates a memory leak
-    // WHy the f**k is 'Jim' still referenced in memory???
 
     [Test]
 //    [Ignore]
@@ -126,7 +124,7 @@ begin
   school.Add('Barb', 1);
   school.Add('Zoe', 2);
   school.Add('Alex', 2);
-  school.Add('Jim', 3);  // Creates a memory leak!?! WTF...???
+  school.Add('Jim', 3);
   school.Add('Charlie', 1);
   actual := school.Roster;
   expected.AddRange(['Anna', 'Barb', 'Charlie', 'Alex', 'Peter', 'Zoe', 'Jim']);
