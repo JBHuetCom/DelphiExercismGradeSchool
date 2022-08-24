@@ -45,16 +45,19 @@ implementation
       if Assigned(FStudentList) then
         begin
           SetLength(StudentListKeys, FStudentList.Keys.Count);
-          StudentListKeys := FStudentList.Keys.ToArray;
-          for var i := 0 to Length(StudentListKeys) - 1 do
-            begin
-              if Assigned(FStudentList.Items[StudentListKeys[i]]) then
-                  FStudentList.Items[StudentListKeys[i]].Free;
-              FStudentList.Remove(StudentListKeys[i]);
-            end;
-          FStudentList.Clear;
+          try
+            StudentListKeys := FStudentList.Keys.ToArray;
+            for var i := 0 to Length(StudentListKeys) - 1 do
+              begin
+                if Assigned(FStudentList.Items[StudentListKeys[i]]) then
+                    FStudentList.Items[StudentListKeys[i]].Free;
+                FStudentList.Remove(StudentListKeys[i]);
+              end;
+            FStudentList.Clear;
+          finally
+            SetLength(StudentListKeys, 0);
+          end;
         end;
-      SetLength(StudentListKeys, 0);
       FStudentList.Free;
       inherited;
     end;
@@ -67,10 +70,8 @@ implementation
           FStudentList.Items[AGrade].Sort;
         end
       else
-        begin
-          if FStudentList.TryAdd(AGrade, TRoster.Create) then
-            FStudentList.Items[AGrade].Add(AName);
-        end;
+        if FStudentList.TryAdd(AGrade, TRoster.Create) then
+          FStudentList.Items[AGrade].Add(AName);
     end;
 
   function TSchool.Grade(AGrade : integer = 1) : TRoster;
@@ -91,11 +92,14 @@ implementation
       if 0 < FStudentList.Count then
         begin
           SetLength(StudentListKeys, FStudentList.Count);
-          StudentListKeys := FStudentList.Keys.ToArray;
-          TArray.Sort<integer>(StudentListKeys);
-          for var i := 0 to (Length(StudentListKeys) - 1) do
-            Result.AddRange(FStudentList.Items[StudentListKeys[i]]);
-          SetLength(StudentListKeys,0);
+          try
+            StudentListKeys := FStudentList.Keys.ToArray;
+            TArray.Sort<integer>(StudentListKeys);
+            for var i := 0 to (Length(StudentListKeys) - 1) do
+              Result.AddRange(FStudentList.Items[StudentListKeys[i]]);
+          finally
+            SetLength(StudentListKeys,0);
+          end;
         end;
     end;
 
