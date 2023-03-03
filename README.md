@@ -1,7 +1,7 @@
 # Grade School
 
 Welcome to Grade School on Exercism's Delphi Pascal Track.
-If you need help running the tests or submitting your code, check out `HELP.md`.
+If you need help running the tests or submitting your code, check out `[HELP.md](HELP.md)`.
 
 ## Instructions
 
