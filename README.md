@@ -1,7 +1,7 @@
 # Grade School
 
 Welcome to Grade School on Exercism's Delphi Pascal Track.
-If you need help running the tests or submitting your code, check out `HELP.md`.
+If you need help running the tests or submitting your code, check out `[HELP.md](HELP.md)`.
 
 ## Instructions
 
@@ -46,8 +46,8 @@ experiment make the code better? Worse? Did you learn anything from it?
 
 ### Created by
 
-- @rpottsoh
+- [@rpottsoh](https://github.com/rpottsoh)
 
 ### Based on
 
-A pairing session with Phil Battos at gSchool - http://gschool.it
+A pairing session with [Phil Battos](https://www.linkedin.com/in/phil-battos/) at gSchool
