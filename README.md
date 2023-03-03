@@ -46,7 +46,7 @@ experiment make the code better? Worse? Did you learn anything from it?
 
 ### Created by
 
-- @rpottsoh
+- [@rpottsoh](https://github.com/rpottsoh)
 
 ### Based on
 
